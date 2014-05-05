@@ -21,7 +21,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(session({ secret: 'chimichangas my man', key: 'sid'}))
+app.use(session({ secret: 'chimichangas my man', key: 'boopityshoopshap'}))
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
