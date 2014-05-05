@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(session({
   secret: 'chimichangas my man',
-  key: 'boopityshoopshap'
+  key: 'KissTheCook(ie)'
 }))
 app.use(express.static(path.join(__dirname, 'public')));
 
