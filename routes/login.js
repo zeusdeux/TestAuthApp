@@ -10,7 +10,11 @@ router.get('/', function(req, res, next) {
   if (user.find(req.session.uid))
     res.redirect('/');
   else {
-    res.render('login');
+    var msg = req.session.msg;
+    delete req.session.msg;
+    res.render('login', {
+      loginMsg: msg
+    });
   }
 });
 
@@ -23,7 +27,7 @@ router.post('/', function(req, res, next) {
     userObj = user.find(uid);
 
     //Generate the hash for the password got from user
-    var inputPassHash = crypto.createHmac('sha1', new Buffer(userObj.salt,'base64')).update(req.param('passwd')).digest('base64');
+    var inputPassHash = crypto.createHmac('sha1', new Buffer(userObj.salt, 'base64')).update(req.param('passwd')).digest('base64');
     if (userObj.hash === inputPassHash) {
       req.session.regenerate(function() {
         req.session.uid = uid;
@@ -31,10 +35,12 @@ router.post('/', function(req, res, next) {
       });
     }
     else {
+      req.session.msg = "Invalid username/password combination.";
       res.redirect('/');
     }
   }
   else {
+    req.session.msg = "Invalid username/password combination.";
     res.redirect('/');
   }
 });

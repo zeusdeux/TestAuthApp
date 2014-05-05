@@ -10,7 +10,7 @@ router.get('/', auth, function(req, res) {
 
 router.get('/logout', function(req, res, next) {
   req.session.destroy(function() {
-    res.redirect('/');
+    res.redirect('/?ciao=1');
   });
 });
 
