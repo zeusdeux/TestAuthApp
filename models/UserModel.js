@@ -13,7 +13,7 @@ UserModel.prototype.find = function(id) {
   var _users = this.getUsers();
   return _users.filter(function(v) {
     return v._id === id && id;
-  }).length;
+  })[0];
 };
 
 UserModel.prototype.getId = function(uname) {
