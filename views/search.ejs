@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search</title>
+</head>
+<body>
+  <form action="/search" method="post">
+    <input type="text" name="q" id="q" value="<%= q %>">
+    <input type="submit" value="Search">
+  </form>
+  <a href="/logout">Logout</a>
+  <% if (results) { %>
+    <div id="output">
+      <p>No of results: <%= results.length %></p>
+      <% for (var i in results) { %>
+        <% if (results[i]) { %>
+          <p class="name">Name: <%=results[i].name%></p>
+          <p class="company">Company: <%=results[i].company%></p>
+        <% } %>
+      <% } %>
+    </div>
+  <% } %>
+</body>
+</html>
